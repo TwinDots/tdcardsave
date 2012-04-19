@@ -1,0 +1,48 @@
+<p>Please provide your credit card information.</p>
+ 
+<?php echo open_form(); ?>
+    <?php flash_message(); ?>
+    <ul class="form">
+        <li class="field text left">
+            <label for="CardName">Cardholders Name</label>
+            <div><input autocomplete="off" name="CardName" value="" id="CardName" type="text" class="text"/></div>
+        </li>
+        <li class="field text right">
+            <label for="CardNumber">Card Number</label>
+            <div><input autocomplete="off" name="CardNumber" value="" id="CardNumber" type="text" class="text"/></div>
+        </li>
+        <li class="field text left">
+            <label for="StartMonth">Start Date - Month</label>
+            <div><input autocomplete="off" name="StartMonth" value="" id="StartMonth" type="text" class="text"/></div>
+        </li>
+        <li class="field text right">
+            <label for="StartYear">Start Date - Year</label>
+            <div><input autocomplete="off" name="StartYear" value="" id="StartYear" type="text" class="text"/></div>
+        </li>
+        <li class="field text left">
+            <label for="ExpMonth">Expiration Date - Month</label>
+            <div><input autocomplete="off" name="ExpMonth" value="" id="ExpMonth" type="text" class="text"/></div>
+        </li>
+        <li class="field text right">
+            <label for="ExpYear">Expiration Date - Year</label>
+            <div><input autocomplete="off" name="ExpYear" value="" id="ExpYear" type="text" class="text"/></div>
+        </li>
+        <li class="field text left">
+			<label for="CV2">
+				CVV2
+				<span class="comment">For MasterCard, Visa, and Discover, the CSC is the last three digits in the signature area on the back of your card. For American Express, it's the four digits on the front of the card.</span>
+			</label>
+			
+			<div><input autocomplete="off" name="CV2" value="" id="CV2" type="text" class="text"/></div>
+		</li>
+        <li class="field text right">
+            <label for="IssueNumber">
+                Issue Number
+                <span class="comment">Applies to Solo &amp; Maestro</span> 
+            </label>
+        </li>
+        <div><input autocomplete="off" name="IssueNumber" value="" id="IssueNumber" type="text" class="text"/></div>
+    </ul>
+    <div class="clear"></div>
+    <input type="submit" onclick="return $(this).getForm().sendRequest('shop:on_pay')" value="Submit"/>
+</form>
