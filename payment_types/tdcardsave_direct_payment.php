@@ -333,9 +333,17 @@ class Tdcardsave_Direct_Payment extends Shop_PaymentType
                  * Billing Address Information
                  */
                 $country_code = new NullableInt($order->billing_country->code_iso_numeric);
+
+                // Added a check in here to see if the state is set as LemonStand doesn't have states for all countries
+                if ( isset($order->billing_state->code) ) {
+                    $billing_state_code = $order->billing_state->code;
+                } else {
+                    $billing_state_code = '';
+                }
+
                 $billing_address = new AddressDetails($order->billing_street_addr,
                     '', $order->billing_company, '', $order->billing_city,
-                    $order->billing_state->code, $order->billing_zip, $country_code
+                    $billing_state_code, $order->billing_zip, $country_code
                 );
                 
                 /**
