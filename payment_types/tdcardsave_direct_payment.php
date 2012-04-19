@@ -415,7 +415,6 @@ class Tdcardsave_Direct_Payment extends Shop_PaymentType
                         case 30: // Error occured
                             $message = $response_message;
                             if ($gateway_output->getErrorMessages()->getCount() > 0) {
-                                $message = "$messagen";
                                 for ($i=0; $i<$gateway_output->getErrorMessages()->getCount(); $i++) {
                                     $message .= "$message ".$gateway_output->getErrorMessages()->getAt($i)."n";
                                 }
