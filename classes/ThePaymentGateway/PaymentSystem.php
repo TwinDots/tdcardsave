@@ -1159,7 +1159,7 @@
 	      	$goGatewayOutput = null;
 
 	      	$sSOAPClient = new SOAP('GetGatewayEntryPoints', GatewayTransaction::getSOAPNamespace());
-	      	$boTransactionSubmitted = GatewayTransaction::processTransaction($sSOAPClient, 'GetGatewayEntryPointsMessage', 'GetGatewayEntryPointsResult', 'GetGatewayEntryPointsOutputData', $sxXmlDocument, $goGatewayOutput, $lgepGatewayEntryPoints);
+	      	$boTransactionSubmitted = GatewayTransaction::TDprocessTransaction($sSOAPClient, 'GetGatewayEntryPointsMessage', 'GetGatewayEntryPointsResult', 'GetGatewayEntryPointsOutputData', $sxXmlDocument, $goGatewayOutput, $lgepGatewayEntryPoints);
 	      
 	      	if ($boTransactionSubmitted)
 	      	{
@@ -1470,7 +1470,7 @@
 	            }
 	       	}
 	       	
-	       	$boTransactionSubmitted = GatewayTransaction::processTransaction($sSOAPClient, 'PaymentMessage', 'CardDetailsTransactionResult', 'TransactionOutputData', $XmlDocument, $goGatewayOutput, $lgepGatewayEntryPoints);
+	       	$boTransactionSubmitted = GatewayTransaction::TDprocessTransaction($sSOAPClient, 'PaymentMessage', 'CardDetailsTransactionResult', 'TransactionOutputData', $XmlDocument, $goGatewayOutput, $lgepGatewayEntryPoints);
 
 			if ($boTransactionSubmitted)
 			{
@@ -1740,7 +1740,7 @@
 	            }
 	        }
 	        
-	        $boTransactionSubmitted = GatewayTransaction::processTransaction($sSOAPClient, 'PaymentMessage', 'CrossReferenceTransactionResult', 'TransactionOutputData', $sxXmlDocument, $goGatewayOutput, $lgepGatewayEntryPoints);
+	        $boTransactionSubmitted = GatewayTransaction::TDprocessTransaction($sSOAPClient, 'PaymentMessage', 'CrossReferenceTransactionResult', 'TransactionOutputData', $sxXmlDocument, $goGatewayOutput, $lgepGatewayEntryPoints);
 
 	       	if ($boTransactionSubmitted)
 	        {
@@ -1800,7 +1800,7 @@
 	            }
 	        }
 	        
-	        $boTransactionSubmitted = GatewayTransaction::processTransaction($sSOAPClient, 'ThreeDSecureMessage', 'ThreeDSecureAuthenticationResult', 'TransactionOutputData', $sxXmlDocument, $goGatewayOutput, $lgepGatewayEntryPoints);
+	        $boTransactionSubmitted = GatewayTransaction::TDprocessTransaction($sSOAPClient, 'ThreeDSecureMessage', 'ThreeDSecureAuthenticationResult', 'TransactionOutputData', $sxXmlDocument, $goGatewayOutput, $lgepGatewayEntryPoints);
 	       	
 	        if ($boTransactionSubmitted)
 	      	{
@@ -1850,7 +1850,7 @@
 	        	$sSOAPClient->addParam('GetCardTypeMessage.CardNumber', $this->m_szCardNumber);
 	        }
 	        
-	        $boTransactionSubmitted = GatewayTransaction::processTransaction($sSOAPClient, 'GetCardTypeMessage', 'GetCardTypeResult', 'GetCardTypeOutputData', $sxXmlDocument, $goGatewayOutput, $lgepGatewayEntryPoints);
+	        $boTransactionSubmitted = GatewayTransaction::TDprocessTransaction($sSOAPClient, 'GetCardTypeMessage', 'GetCardTypeResult', 'GetCardTypeOutputData', $sxXmlDocument, $goGatewayOutput, $lgepGatewayEntryPoints);
 
 	        if ($boTransactionSubmitted)
 	        {
@@ -1998,7 +1998,7 @@
 	      	return $nReturnValue;
 	   	}
 
-	   	protected function processTransaction(SOAP $sSOAPClient, $szMessageXMLPath, $szGatewayOutputXMLPath, $szTransactionMessageXMLPath, SimpleXMLElement &$sxXmlDocument = null, GatewayOutput &$goGatewayOutput = null, GatewayEntryPointList &$lgepGatewayEntryPoints = null)
+	   	protected function TDprocessTransaction(SOAP $sSOAPClient, $szMessageXMLPath, $szGatewayOutputXMLPath, $szTransactionMessageXMLPath, SimpleXMLElement &$sxXmlDocument = null, GatewayOutput &$goGatewayOutput = null, GatewayEntryPointList &$lgepGatewayEntryPoints = null)
 	   	{
 			$boTransactionSubmitted = false;
 		    $nOverallRetryCount = 0;

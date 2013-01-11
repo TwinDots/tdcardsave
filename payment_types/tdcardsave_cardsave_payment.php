@@ -7,7 +7,7 @@
  * twindots.co.uk
  */
  
-class Tdcardsave_Direct_Payment extends Shop_PaymentType
+class Tdcardsave_Cardsave_Payment extends Shop_PaymentType
 {
     /**
      * Payment method information
@@ -279,12 +279,12 @@ class Tdcardsave_Direct_Payment extends Shop_PaymentType
                 /**
                  * 3D Secure To be implemented
                  */
-                $three_d_secure_override_policy = new NullableBool(true);
+                $three_d_secure_override_policy = new NullableBool(false);
                 
                 /**
                  * Time Options
                  */
-                $duplicate_delay = new NullableInt(1);
+                $duplicate_delay = new NullableInt(20);
                 
                 /**
                  * Transaction Control
@@ -441,7 +441,10 @@ class Tdcardsave_Direct_Payment extends Shop_PaymentType
             /*
             * Log invalid payment attempt
             */
-            $this->log_payment_attempt($order, $ex->getMessage(), 0, array(), array(), null);
+            if ( !isset($data) )
+                $data = array();
+            
+            $this->log_payment_attempt($order, $ex->getMessage(), 0, $this->prepare_fields_log($data), array(), null);
             
             if (!$back_end)
                 throw new Phpr_ApplicationException('Payment Declined');

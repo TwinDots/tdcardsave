@@ -1,0 +1,84 @@
+<p>Please provide your credit card information.</p>
+ 
+<?php echo open_form(); ?>
+    <?php flash_message(); ?>
+    <ul class="form">
+        <li class="field text">
+            <label for="CardName">Cardholders Name</label>
+            <div><input autocomplete="off" name="CardName" value="" id="CardName" type="text" class="text"/></div>
+        </li>
+        <li class="field text">
+            <label for="CardNumber">Card Number</label>
+            <div><input autocomplete="off" name="CardNumber" value="" id="CardNumber" type="text" class="text"/></div>
+        </li>
+        <li class="field text left">
+            <label for="StartMonth">Start Date - Month</label>
+            <div>
+                <select autocomplete="off" name="StartMonth" id="StartMonth">
+                    <? for ($month=1; $month <= 12; $month++): ?>
+                        <option value="<?= $month ?>"><?= $month ?></option>
+                    <? endfor ?>
+                </select>
+            </div>
+        </li>
+        <li class="field text right">
+            <label for="StartYear">Start Date - Year</label>
+            <div>
+                <select autocomplete="off" name="StartYear" id="StartYear">
+                    <?
+                    $startYear = date('y') - 8;
+      
+                    for ($year=$startYear; $year <= date('y'); $year++):
+                        if ( $year < 10 ) 
+                            $output = '0'.$year;
+                        else
+                            $output = $year;
+                    ?>
+                        <option value="<?= $output ?>"><?= $output ?></option>
+                    <? endfor ?>
+                </select>
+            </div>
+        </li>
+        <li class="field text left">
+            <label for="ExpMonth">Expiration Date - Month</label>
+            <div>
+                <select autocomplete="off" name="ExpMonth" id="ExpMonth">
+                    <? for ($month=1; $month <= 12; $month++): ?>
+                        <option value="<?= $month ?>"><?= $month ?></option>
+                    <? endfor ?>
+                </select>
+            </div>
+        </li>
+        <li class="field text right">
+            <label for="ExpYear">Expiration Date - Year</label>
+            <div>
+                <select autocomplete="off" name="ExpYear" id="ExpYear">
+                    <?
+                    $startYear = date('y');
+                    for ($year=$startYear; $year <= $startYear + 10; $year++): ?>
+                        <option value="<?= $year ?>"><?= $year ?></option>
+                    <? endfor ?>
+                </select>
+            </div>
+        </li>
+        <li class="field text left">
+			<label for="CV2">
+				CVV2
+				<span class="comment">For MasterCard, Visa, and Discover, the CSC is the last three digits in the signature area on the back of your card. For American Express, it's the four digits on the front of the card.</span>
+			</label>
+			
+			<div><input autocomplete="off" name="CV2" value="" id="CV2" type="text" class="text"/></div>
+		</li>
+        <li class="field text right">
+            <label for="IssueNumber">
+                Issue Number
+                <span class="comment">Applies to Solo &amp; Maestro</span> 
+            </label>
+            
+            <div><input autocomplete="off" name="IssueNumber" value="" id="IssueNumber" type="text" class="text"/></div>
+        </li>
+        <li class="field">
+            <input type="submit" onclick="return $(this).getForm().sendRequest('shop:on_pay')" value="Submit"/>
+        </li>
+    </ul>
+</form>
